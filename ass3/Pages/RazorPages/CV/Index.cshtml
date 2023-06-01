@@ -1,0 +1,66 @@
+﻿@page
+@model ass3.Pages.RazorPages.CV.Index
+@{
+    ViewData["Title"] = "View CV";
+}
+<div class="container p-2 ">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary mb-5">CV List</h2>
+        </div>
+        <div class="col-6">
+            <a asp-page="Create" class="btn btn-primary ms-5"><i class="bi bi-pencil-square"></i>&nbsp;Create New CV</a>
+        </div>
+    </div>
+
+    <div style="display: inline-block;text-align:center;">
+        <form method="post" class="d-flex" autocomplete="off">
+            <input class="form-control me-sm-2" style="width:35rem;" asp-for="SearchContent" type="text" placeholder="Type a word that matches the beginning of any of the sections below">
+            <button class="btn btn-primary my-2 my-sm-0" style="width:5rem;" type="submit">Filter</button>
+        </form>
+    </div>
+    <br /><br />
+    <table class="table table-bordered table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th> First Name</th>
+                <th>Last Name</th>
+                <th>BirdthDay</th>
+                <th>Nationality</th>
+                <th>Sex</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Skills</th>
+                <th>Options</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var CV in Model.CVMODELS)
+        {
+          <tr>
+                    <td><img src="@Url.Content(@CV.Photo)" class="img-thumbnail rounded-circle" alt="@CV.Photo" /></td>
+                    <td class="font-weight-bold">@CV.FirstName</td>
+                    <td class="font-weight-bold">@CV.LastName</td>
+                    <td class="font-weight-bold">@CV.BDay</td>
+                    <td class="font-weight-bold">@CV.Nationality</td>
+                    <td class="font-weight-bold">@CV.Sex</td>
+                    <td class="font-weight-bold">@CV.Email</td>
+                    <td class="font-weight-bold">@CV.Pass</td>
+                    <td class="font-weight-bold">@CV.Skills</td>
+                    <td width="20%" lass="font-weight-bold">
+                        <div class="w-75 btn-group" role="group">
+                          <a asp-page="Edit" asp-route-id="@CV.Id" class="btn btn-primary mx-2" ><i class="bi bi-pencil"></i></a>
+                          <a asp-page="Index" class="btn btn-danger mx-2" asp-route-id="@CV.Id" asp-page-handler="Delete"><i class="bi bi-trash-fill"></i></a>
+                          <a asp-page="Details" asp-route-id="@CV.Id" class="btn btn-primary mx-2"><i class="bi bi-info-square-fill"></i></a>
+
+
+                        </div>
+                </td>
+          </tr>
+}
+         </tbody>
+   </table>
+</div>
+
+

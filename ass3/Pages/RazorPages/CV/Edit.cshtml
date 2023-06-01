@@ -1,0 +1,152 @@
+﻿@page
+@model ass3.Pages.RazorPages.CV.EditModel
+@{
+    ViewData["title"] = "Edit CV";
+}
+
+<div class="container">
+    <a asp-page="Index" class="btn btn-primary btn-lg" style="margin:3rem 0rem 1rem 0.5rem;">
+        <i class="bi bi-arrow-90deg-left"></i>
+    </a>
+    <div asp-validation-summary="All" class="text-warning"></div>
+    <form method="post" class="border p-3 mt-5 " enctype="multipart/form-data">
+        <div class="modal" id="myModal">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="padding:0.5rem 1rem 0rem 1rem;">
+                    <div class="modal-header">
+                        <h5 class="modal-title">
+                            <i class="bi bi-x"></i> VERIFICATION
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p style="font-size:1.1rem;">Fill in these fields so that the equation is correct</p>
+                        <table cellpadding="0" cellspacing="0" id="myTable">
+                            <tr>
+                                <td><input type="number" asp-for="CVMODELS.Verfication.Nb1" class="form-control" style="width:4.375rem;" readonly /></td>
+                                <td>&nbsp;&nbsp;&nbsp;&nbsp;+&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                <td><input type="number" asp-for="CVMODELS.Verfication.Nb2" class="form-control" style="width:4.375rem;" readonly /></td>
+                                <td>&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                <td><input type="number" value="" class="form-control" style="width:4.375rem;" asp-for="CVMODELS.Verfication.Nb3" /></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" id="subButton" style="width:4.375rem;" class="btn btn-info">Send</button>
+                        <button type="button" class="btn btn-secondary" style="width:4.375rem;" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <input type="hidden" asp-for="CV.Id" /> 
+        <div class="mb-3">
+            <label asp-for="CV.FirstName" class="form-label"></label>
+            <input asp-for="CV.FirstName" class="form-control form-control-sm" />
+            <span asp-validation-for="CV.FirstName" class="text-warning"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="CV.LastName" class="form-label"></label>
+            <input asp-for="CV.LastName" class="form-control form-control-sm" />
+            <span asp-validation-for="CV.LastName" class="text-warning"></span>
+
+        </div>  
+        <div class="mb-3">
+            <label asp-for="CV.BDay" class="form-label"></label>
+            <input asp-for="CV.BDay" class="form-control form-control-sm" />
+            <span asp-validation-for="CV.BDay" class="text-warning"></span>
+
+        </div>
+        <div class="mb-3">
+            <label asp-for="CV.Nationality" class="form-label">Nationality</label>
+            <select asp-for="CV.Nationality" asp-items="Model.CVMODELS.CountryList" class="form-select form-select-sm text-black"></select>
+        </div>
+        <div class="container">
+            <label asp-for="CV.Sex" class="form-label"></label>
+            <div class="form-check">
+                <input type="radio" asp-for="CV.Sex" value="Male" class="form-check-input" />
+                <label class="form-check-label">Male</label>
+            </div>
+            <div class="form-check">
+                <input type="radio" asp-for="CV.Sex" value="Female" class="form-check-input" />
+                <label class="form-check-label">Female</label>
+            </div>
+        </div>
+        <div class="container">
+            <label asp-for="CVMODELS.SkillsDictionary" class="form-check-label"></label>
+            @foreach (var skill in Model.CVMODELS.SkillsDictionary)
+            {
+                <div class="form-check">
+                    <input type="checkbox" id="@skill.Key" name="SkillsDictionary[@skill.Key]" @(skill.Value ? "checked" : "") class="form-check-input" />
+                    <label for="@skill.Key" class="form-check-label">@skill.Key</label>
+                </div>
+            }
+        </div>
+        <div class="mb-3">
+            <label asp-for="CV.Email" class="form-label"></label>
+            <input asp-for="CV.Email" class="form-control form-control-sm" />
+            <span asp-validation-for="CV.Email" class="text-warning"></span>
+
+        </div>
+        <div class="mb-3">
+            <label asp-for="CV.Pass" class="form-label"></label>
+            <input asp-for="CV.Pass" class="form-control form-control-sm" />
+            <span asp-validation-for="CV.Pass" class="text-warning"></span>
+
+        </div>
+        <div class="mb-3">
+            <label asp-for="CVMODELS.ConfirmPass" class="form-label"></label>
+            <input asp-for="CVMODELS.ConfirmPass" class="form-control form-control-sm" />
+            <span asp-validation-for="CVMODELS.ConfirmPass " class="text-warning"></span>
+
+        </div>
+        <div class="mb-5 mt-3 custom-file">
+          
+            @if (!string.IsNullOrEmpty(Model.CV.Photo))
+            {
+                <img src="@Url.Content(@Model.CV.Photo)" style="  width: 100px;height: 100px;border-radius: 50%;object-fit: cover; " alt="Image">
+            }
+            else
+            {
+                <h2>Your Image</h2>
+            }
+            <div class="mb-5 custom-file mt-4">
+                <input type="file" asp-for="CVMODELS.Photo" class="form-file-input"/>
+                <span asp-validation-for="CVMODELS.Photo" class="text-warning"></span>
+            </div>
+        </div>
+        <button type="submit" id="myBtn" class="btn btn-primary align-content-center mb-5">Update</button>
+    </form>
+
+</div>
+
+
+
+
+@section Scripts{
+
+    <partial name="_ValidationScriptsPartial" />
+
+    <script type="text/javascript">
+
+        $("#myBtn").click(function () {
+            $("#myModal").modal('show');
+        });
+
+        $(document).ready(function () {
+            $('#myTable input[type="number"]').blur(function () {
+                if (!$(this).val()) {
+                    $("#subButton").click(function () {
+                        $("#myModal").modal('hide');
+                    });
+                }
+            });
+        });
+
+    </script>
+
+ }         
