@@ -53,9 +53,7 @@ namespace ass3.Pages.Services
             var file = CVMODELS.Photo;
             var uniqueFileName = Guid.NewGuid().ToString() + "_" + file.FileName;
             // Define the file path to save the uploaded file
-            string folderPath = "C:\\Users\\mhmdm\\OneDrive\\Desktop\\ass3\\ass3\\wwwroot\\";
-            var filePath = Path.Combine(Directory.GetParent(folderPath).FullName, "Uploads", uniqueFileName);
-
+            string filePath = "wwwroot/Uploads/"+uniqueFileName;
             // Save the file to the specified path
             using (var stream = new FileStream(filePath, FileMode.Create))
             {

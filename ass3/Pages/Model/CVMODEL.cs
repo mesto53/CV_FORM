@@ -17,7 +17,7 @@ namespace ass3.Pages.Model
         public Dictionary<string, bool> SkillsDictionary { get; set; } = new Dictionary<string, bool>()
         {
             { "JAVA", true },
-            { "PYTHON", false },
+            { "PYTHON", false },    
             { "ASP.CORE", false }
         };
 

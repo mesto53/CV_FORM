@@ -44,16 +44,9 @@ namespace ass3.Pages.Model
         [PasswordPropertyText]
         public string Pass { get; set; } = "";
 
-
-
-
         public string Photo { get; set; } = "";
-
 
         public string Skills { get; set; } = "";
     }
-
-
-
 
 }

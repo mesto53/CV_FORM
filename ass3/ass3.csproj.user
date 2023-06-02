@@ -3,7 +3,7 @@
   <PropertyGroup>
     <RazorPage_SelectedScaffolderID>ModelBasedCrudRazorPageScaffolder</RazorPage_SelectedScaffolderID>
     <RazorPage_SelectedScaffolderCategoryPath>root/Common</RazorPage_SelectedScaffolderCategoryPath>
-    <ActiveDebugProfile>ass3</ActiveDebugProfile>
+    <ActiveDebugProfile>IIS Express</ActiveDebugProfile>
     <WebStackScaffolding_EnablerDialogWidth>650.4</WebStackScaffolding_EnablerDialogWidth>
     <_SelectedScaffolderID>RazorViewEmptyScaffolder</_SelectedScaffolderID>
     <_SelectedScaffolderCategoryPath>root/Common/MVC</_SelectedScaffolderCategoryPath>
